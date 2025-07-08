@@ -32,7 +32,7 @@ class Fighter: Spaceship {
         if remainingFirePower > 0 {
             remainingFirePower -= 1
         } else {
-            super.wasHit()
+            print("You have no more fire power.")
         }
     }
 }
