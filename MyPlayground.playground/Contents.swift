@@ -17,50 +17,50 @@ var size =  Size(12,10)
 size.printArea()
 
 
-struct Car{
-    var odoMeter: Int
-    var speed: Int
-    var isRunning:Bool = false
-    var isStarted:Bool = false
-    init(_ odoMeter:Int, _ speed:Int){
-        self.odoMeter = odoMeter
-        self.speed = speed
-    }
-    func printCarStatus(){
-        print("The car's speed is \(speed) Km/h and the odoMeter is \(odoMeter) KM")
-    }
-    mutating func startEngine(){
-        print("Engine started")
-        isStarted = true
-    }
-    mutating func accelerate(){
-        if !self.isStarted{
-            print("Start the Car first!")
-            return
-        }
-        isRunning = true
-        self.speed += 10
-    }
-    mutating func decelerate(){
-        if !self.isStarted{
-            print("Start the Car first!")
-            return
-        }
-        self.speed -= 10
-    }
-}
+//struct Car{
+//    var odoMeter: Int
+//    var speed: Int
+//    var isRunning:Bool = false
+//    var isStarted:Bool = false
+//    init(_ odoMeter:Int, _ speed:Int){
+//        self.odoMeter = odoMeter
+//        self.speed = speed
+//    }
+//    func printCarStatus(){
+//        print("The car's speed is \(speed) Km/h and the odoMeter is \(odoMeter) KM")
+//    }
+//    mutating func startEngine(){
+//        print("Engine started")
+//        isStarted = true
+//    }
+//    mutating func accelerate(){
+//        if !self.isStarted{
+//            print("Start the Car first!")
+//            return
+//        }
+//        isRunning = true
+//        self.speed += 10
+//    }
+//    mutating func decelerate(){
+//        if !self.isStarted{
+//            print("Start the Car first!")
+//            return
+//        }
+//        self.speed -= 10
+//    }
+//}
 
-var car = Car(1000,410)
-car.printCarStatus()
-car.startEngine()
-car.accelerate()
-car.printCarStatus()
-car.accelerate()
-car.printCarStatus()
-car.accelerate()
-car.printCarStatus()
-car.decelerate()
-car.printCarStatus()
+//var car = Car(1000,410)
+//car.printCarStatus()
+//car.startEngine()
+//car.accelerate()
+//car.printCarStatus()
+//car.accelerate()
+//car.printCarStatus()
+//car.accelerate()
+//car.printCarStatus()
+//car.decelerate()
+//car.printCarStatus()
 
 
 struct Temp{
@@ -158,13 +158,52 @@ var madhav = User(firstName: "Madhav", lastName: "Sharma", age: 20)
 
 class Vehicle{
     var currentSpeed = 0.0
+    init(currentSpeed: Double = 0.0) {
+        self.currentSpeed = currentSpeed
+    }
     var description:String {
         "travelling at \(currentSpeed) miles per hour"
     }
-    func makenoise(){
-        
+    func makeNoise() -> String{
+        return "General Vehicle has no sound!"
     }
 }
 
-let someVehicle = Vehicle()
-print("Vehicle: \(someVehicle.description)")
+class Bicycle : Vehicle{
+    var hasBasket = false
+    init(currentSpeed: Double = 0.0 ,hasBasket: Bool = false) {
+        self.hasBasket = hasBasket;
+        super.init(currentSpeed: currentSpeed)
+    }
+     override func makeNoise() -> String {
+        return "trin trin"
+    }
+}
+class Tandem: Bicycle{
+    var currentNumberOfPassengers = 0
+    init(currentSpeed: Double = 0.0 ,hasBasket: Bool = false, currentNumberOfPassengers: Int = 0) {
+        self.currentNumberOfPassengers = currentNumberOfPassengers
+        super.init(currentSpeed: currentSpeed, hasBasket: hasBasket)
+    }
+}
+class Train: Vehicle{
+     override func makeNoise() -> String {
+        return "Choo Choo"
+    }
+}
+
+class Car: Vehicle{
+    var gear = 1
+    override var description: String {
+        super.description + " in gear \(gear)"
+    }
+    override func makeNoise() -> String {
+        "ratatata"
+    }
+}
+var tandem = Tandem()
+tandem.currentNumberOfPassengers = 2
+tandem.currentSpeed = 20
+tandem.hasBasket = true
+
+var car = Car()
