@@ -27,16 +27,22 @@ print(rectangle.area)
 struct Height {
     var heightInInches: Double {
         didSet {
-            if heightInCentimeters != heightInInches * 2.54 {
+            if oldValue != heightInInches {
                 heightInCentimeters = heightInInches * 2.54
             }
+//            if heightInCentimeters != heightInInches * 2.54 {
+//                heightInCentimeters = heightInInches * 2.54
+//            }
         }
     }
     var heightInCentimeters: Double {
         didSet {
-            if heightInInches != heightInCentimeters / 2.54 {
+            if oldValue != heightInCentimeters{
                 heightInInches = heightInCentimeters / 2.54
             }
+//            if heightInInches != heightInCentimeters / 2.54 {
+//                heightInInches = heightInCentimeters / 2.54
+//            }
         }
     }
     init(in heightInInches: Double) {

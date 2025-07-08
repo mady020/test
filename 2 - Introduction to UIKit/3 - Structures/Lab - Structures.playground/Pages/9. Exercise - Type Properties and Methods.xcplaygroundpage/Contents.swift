@@ -7,21 +7,17 @@ struct User {
     var userName: String
     var email: String
     var age: Int
-   
     init(_ userName: String, _ email: String, _ age: Int) {
         self.userName = userName
         self.email = email
         self.age = age
     }
-    
     static var currentUser = User("madhav", "madhav1887.be23@chitkara.edu.in", 20)
     static func logIn(user: User){
         currentUser = user
         print("Logged in as \(user.userName)")
     }
 }
-
-
 print("Current user:")
 print("Username: \(User.currentUser.userName)")
 print("Email: \(User.currentUser.email)")

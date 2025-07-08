@@ -154,3 +154,17 @@ var madhav = User(firstName: "Madhav", lastName: "Sharma", age: 20)
 //madhav.printDetails()
 //madhav.age = 21
 //madhav.printDetails()
+
+
+class Vehicle{
+    var currentSpeed = 0.0
+    var description:String {
+        "travelling at \(currentSpeed) miles per hour"
+    }
+    func makenoise(){
+        
+    }
+}
+
+let someVehicle = Vehicle()
+print("Vehicle: \(someVehicle.description)")
