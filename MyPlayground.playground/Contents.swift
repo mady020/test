@@ -176,7 +176,7 @@ class Bicycle : Vehicle{
         super.init(currentSpeed: currentSpeed)
     }
      override func makeNoise() -> String {
-        return "trin trin"
+         "trin trin"
     }
 }
 class Tandem: Bicycle{
@@ -188,7 +188,7 @@ class Tandem: Bicycle{
 }
 class Train: Vehicle{
      override func makeNoise() -> String {
-        return "Choo Choo"
+         "Choo Choo"
     }
 }
 
@@ -207,3 +207,130 @@ tandem.currentSpeed = 20
 tandem.hasBasket = true
 
 var car = Car()
+
+
+var names: [String] = ["madhav", "navdeep", "harsh", "guri"]
+
+if names.contains("madhav"){
+    print("\(names) contains \(names[0])")
+}
+print("Total Number of Names: \(names.count)")
+
+var numbers:[Int] = []
+
+print(numbers.max() ?? Int.min)
+
+
+
+
+// MARK: - Definition of a Struct (Value Type)
+
+/// `pointStruct` is a value type. When you assign or pass it around,
+/// Swift makes a full copy. Stored in the stack (usually).
+struct pointStruct {
+    var x: Int
+    var y: Int
+}
+
+// MARK: - Definition of a Class (Reference Type)
+
+/// `pointClass` is a reference type. Assignments or parameters share a reference,
+/// not the actual object. Stored in the heap; the reference (pointer) is on the stack.
+class pointClass {
+    var x: Int
+    var y: Int
+    
+    init(x: Int, y: Int) {
+        self.x = x
+        self.y = y
+    }
+}
+
+// MARK: - Struct Example (Value Semantics)
+
+/// When `point1Ref` is assigned from `point1`, it's a full copy.
+/// Both hold separate memory locations.
+var point1 = pointStruct(x: 1, y: 2)
+var point1Ref = point1
+
+// Modify `point1Ref` and it won't affect `point1` because it's a deep copy
+point1Ref.x = 100
+
+// MARK: - Class Example (Reference Semantics)
+
+/// Both `point2` and `point2Ref` point to the same object in memory.
+var point2 = pointClass(x: 1, y: 2)
+var point2Ref = point2
+
+// Modify `point2Ref` and it affects `point2` as well
+point2Ref.x = 100  // point2.x is now also 100
+
+// MARK: - Inspecting Memory Layout Using UnsafeRawPointer
+
+/// Get a raw pointer to the object memory.
+/// This points to the start of the object in the heap.
+var base = UnsafeRawPointer(Unmanaged.passUnretained(point2).toOpaque())
+
+/// Get raw pointer to the `y` property inside the object.
+/// Note: `withUnsafePointer` gives us a pointer to the stack address
+/// of the property wrapper (not the heap), so we're measuring offset
+/// from base to this.
+let yPtr = withUnsafePointer(to: point2.y) {
+    UnsafeRawPointer($0)
+}
+
+/// Same for the `x` property.
+let xPtr = withUnsafePointer(to: point2.x) {
+    UnsafeRawPointer($0)
+}
+
+/// Compute the byte offset of `y` relative to the object base pointer.
+let offset = yPtr - base
+print("Offset of point2.y is \(offset) Bytes")
+
+
+var array:[[Int]] = []
+array.append([1,2,3])
+array.append([4,5,6])
+
+//var array2 = Array<Array<Int>>()
+
+
+for i in 0..<array.count{
+    for j in 0..<array[0].count{
+        print(array[i][j])
+    }
+}
+
+var map = [
+    0 : "madhav",
+    1 : "harsh"
+]
+
+//var i = 0
+//repeat{
+//    print("hello \(i)")
+//    i += 1
+//}while i < 2
+var i = 0
+while i < 2 {
+    print("hello \(i)")
+    i += 1
+}
+
+
+var var1 = 1
+var var2 = 1
+
+print(withUnsafePointer(to: &var1){
+  UnsafeRawPointer($0)
+})
+print(withUnsafePointer(to: &var2){
+  UnsafeRawPointer($0)
+})
+
+
+
+for (index, letter) in "abcd".enumerated(){
+    print("\(letter) at \(index)")
+}
