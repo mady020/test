@@ -343,3 +343,38 @@ if test != nil {
 }else{
     print("its nil")
 }
+
+
+
+struct Person {
+    var age: Int
+    var residence: Residence?
+}
+
+struct Residence {
+    var address: Address?
+}
+struct Address {
+    var buildingNumber: String
+    var streetName: String
+    var apartmentNumber: String?
+}
+
+//var person = Person(age: 21)
+var address = Address(buildingNumber: "4A", streetName: "Mag",apartmentNumber: "12")
+var residence = Residence(address: address)
+var person = Person(age: 21, residence: residence)
+
+if let theResidence = person.residence {
+    if let theAddress = theResidence.address {
+        if let theApartmentNumber =  theAddress.apartmentNumber {
+            print("They live in apartment number \(theApartmentNumber)")
+        }
+    }
+}
+
+// optional chaining
+if let apartmentNumber = person.residence?.address?.apartmentNumber {
+    print("They live in apartment number \(apartmentNumber)")
+}
+
