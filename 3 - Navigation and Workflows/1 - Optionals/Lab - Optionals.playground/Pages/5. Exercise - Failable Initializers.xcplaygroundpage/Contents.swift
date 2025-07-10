@@ -20,16 +20,15 @@ struct Computer{
 var computer1 = Computer(ram: 0, yearManufactured:2000)
 var computer2 = Computer(ram: 2, yearManufactured:2000)
 
-if  let c1 = computer1{
+if  let c1 = computer1, let  c2 = computer2{
     print("Computer 1:")
     print("Ram : \(c1.ram)")
     print("Year: \(c1.yearManufactured)")
-}
-if  let c2 = computer2{
     print("Computer 2:")
     print("Ram : \(c2.ram)")
     print("Year: \(c2.yearManufactured)")
 }
+
 /*:
 [Previous](@previous)  |  page 5 of 6  |  [Next: App Exercise - Workout or Nil](@next)
  */
