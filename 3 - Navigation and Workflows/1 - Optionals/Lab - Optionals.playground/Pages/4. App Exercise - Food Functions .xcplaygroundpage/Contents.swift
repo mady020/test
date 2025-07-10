@@ -34,6 +34,8 @@ func checkMealLog() -> [String:Any] {
     if let mealLog =  UserDefaults.standard.dictionary(forKey: "mealLog"){
         return mealLog
     }else{
+//        var dict:[String: Any] = [:]
+//        return dict
         return Dictionary<String, Any>()
     }
 }
