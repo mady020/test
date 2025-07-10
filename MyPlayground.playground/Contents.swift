@@ -334,3 +334,12 @@ print(withUnsafePointer(to: &var2){
 for (index, letter) in "abcd".enumerated(){
     print("\(letter) at \(index)")
 }
+
+
+let test:Int? = 12
+
+if test != nil {
+    print("its not nil")
+}else{
+    print("its nil")
+}
