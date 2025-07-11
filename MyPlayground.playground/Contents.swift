@@ -596,3 +596,18 @@ print(pet?.name ?? "Pet name not found!")
 //}
 // is : type inspection keyword
 
+
+
+// Any
+var optionalInt:Int? = 12
+var items:[Any] = [5,1.2,"string",true,  optionalInt] // Expression implicitly coerced from 'Int?' to 'Any'
+let variable: Any
+
+if let firstItem = items[0] as? Int {
+    print(firstItem + 1)
+}
+
+//example: print() expects Any to be passed to the items: args
+// swift shows warming when you pass an optional type like Int? to print function which expects Any
+// Expression implicitly coerced from 'Int?' to 'Any'
+// coerced : does something by force / explicitly
