@@ -379,30 +379,7 @@ if let apartmentNumber = person.residence?.address?.apartmentNumber {
 }
 
 
-// Type casting
 
-
-class Animal{
-    
-}
-class Cat: Animal {
-    
-}
-class Dog: Animal{
-    
-}
-
-var clients = [
-    "John" : Dog(),
-    "Laura" : Cat()
-]
-func getClientPet(clientName: String) -> Animal? {
-    return clients[clientName]
-}
-
-let pet = getClientPet(clientName: "John")
-
-//print(pet)
 
 
 
@@ -479,7 +456,7 @@ print(student2?.getMentorSpecialization() ?? "Specialization not found!")
 
 
 var name:String? = "Robert"
-// variable shadowing
+// variable shadowing : using the name identifier after unwrapping or in the initilizer
 //if let name = name {
 //    // name is unwrapped here
 //    print("My name is \(name)")
@@ -489,8 +466,8 @@ if let name {
     print("My name is \(name)")
 }
 // name is optional here
-print(name)
-//
+//print(name)
+// in case of guard the unwrapped value can be accessed after the guard block
 //guard let anotherName = name else{
 //    print("name is nil")
 //}
@@ -526,9 +503,6 @@ case .left:
 
 
 
-
-
-
 enum LoginStatus {
     case success, invalidUsername, invalidEmail
 }
@@ -548,7 +522,7 @@ struct User{
 
 }
 var testuser = User(username: "mady020", email: "test@gmail.com")
-ß
+
 switch(testuser.validateUserInput()){
 case .invalidEmail:
     print("[ERROR] :  Either nil or Invalid Email Address!")
@@ -560,3 +534,65 @@ case .success:
         print("Email: \(email)")
     }
 }
+
+
+
+
+// Type casting
+
+
+class Animal{
+    var name:String
+    init(name: String) {
+        self.name = name
+    }
+}
+class Dog: Animal{
+
+    func bark(){
+        print("Woof!")
+    }
+}
+class Cat: Animal {
+
+    func meo(){
+        print("Meo!")
+    }
+}
+
+class Bird : Animal{
+ 
+    func chirp(){
+        print("Tweek!")
+    }
+}
+
+var clients = [
+    "John" : Dog(name: "Tommy"),
+    "Laura" : Cat(name: "Kitty"),
+    "Bob" : Bird(name: "Sparrow")
+]
+func getClientPet(clientName: String) -> Animal? {
+    return clients[clientName]
+}
+
+let pet = getClientPet(clientName: "John") as? Dog // optionally typecasting from Animal to Dog
+
+print(pet?.name ?? "Pet name not found!")
+// pet.bark() // cannot call as the type of animal is unknown
+// as! : forcefully downcast when the type is knownm this can be used with type inspection like done below
+
+// as? : will return nil, if fail to downcast
+// as!: crash the program when it fail to downcast
+
+//if pet is Bird {
+//    print("\(pet?.name ?? "") is Bird!")
+//}
+//if pet is Dog {
+//    print("\(pet?.name) is Dog!")
+//}
+//if pet is Cat {
+//    print("\(pet?.name) is Cat!")
+//}
+// is : type inspection keyword
+
