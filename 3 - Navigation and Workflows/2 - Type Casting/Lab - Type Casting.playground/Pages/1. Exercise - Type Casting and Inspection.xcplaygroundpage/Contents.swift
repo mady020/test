@@ -3,7 +3,7 @@
 
  Create a collection of type [Any], including a few doubles, integers, strings, and booleans within the collection. Print the contents of the collection.
  */
- 
+ var coll
 
 //:  Loop through the collection. For each integer, print "The integer has a value of ", followed by the integer value. Repeat the steps for doubles, strings and booleans.
  

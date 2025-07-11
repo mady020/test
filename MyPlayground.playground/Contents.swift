@@ -107,50 +107,50 @@ chitkaraTemp.printTemp()
 chitkaraTemp.tempUp()
 chitkaraTemp.printTemp()
 
-struct User{
-    static var currentYear = 2025
-    var firstName:String{
-        didSet{
-            print("First Name is  \(oldValue)")
-        }
-        willSet{
-            print("First Name is changed to \(newValue)")
-        }
-    }
-    var lastName:String{
-        didSet{
-            print("Last Name is  \(oldValue)")
-        }
-        willSet{
-            print("Last Name is changed to \(newValue)")
-        }
-    }
-    var fullName:String  {
-        firstName + " " + lastName
-    }
-    var age:Int{
-        didSet{
-            print("Age is changing from  \(oldValue)")
-        }
-        willSet{
-            print("Age is changed to \(newValue)")
-        }
-    }
-    var birthYear:Int {
-        User.currentYear - age
-    }
-    init(firstName: String, lastName: String, age: Int) {
-        self.firstName = firstName
-        self.lastName = lastName
-        self.age = age
-    }
-    func printDetails(){
-        print("Full Name: \(fullName)")
-        print("Year of Birth: \(birthYear)")
-    }
-}
+//struct User{
+//    static var currentYear = 2025
+//    var firstName:String{
+//        didSet{
+//            print("First Name is  \(oldValue)")
+//        }
+//        willSet{
+//            print("First Name is changed to \(newValue)")
+//        }
+//    }
+//    var lastName:String{
+//        didSet{
+//            print("Last Name is  \(oldValue)")
+//        }
+//        willSet{
+//            print("Last Name is changed to \(newValue)")
+//        }
+//    }
+//    var fullName:String  {
+//        firstName + " " + lastName
+//    }
+//    var age:Int{
+//        didSet{
+//            print("Age is changing from  \(oldValue)")
+//        }
+//        willSet{
+//            print("Age is changed to \(newValue)")
+//        }
+//    }
+//    var birthYear:Int {
+//        User.currentYear - age
+//    }
+//    init(firstName: String, lastName: String, age: Int) {
+//        self.firstName = firstName
+//        self.lastName = lastName
+//        self.age = age
+//    }
+//    func printDetails(){
+//        print("Full Name: \(fullName)")
+//        print("Year of Birth: \(birthYear)")
+//    }
+//}
 
-var madhav = User(firstName: "Madhav", lastName: "Sharma", age: 20)
+//var madhav = User(firstName: "Madhav", lastName: "Sharma", age: 20)
 //madhav.printDetails()
 //madhav.age = 21
 //madhav.printDetails()
@@ -378,3 +378,185 @@ if let apartmentNumber = person.residence?.address?.apartmentNumber {
     print("They live in apartment number \(apartmentNumber)")
 }
 
+
+// Type casting
+
+
+class Animal{
+    
+}
+class Cat: Animal {
+    
+}
+class Dog: Animal{
+    
+}
+
+var clients = [
+    "John" : Dog(),
+    "Laura" : Cat()
+]
+func getClientPet(clientName: String) -> Animal? {
+    return clients[clientName]
+}
+
+let pet = getClientPet(clientName: "John")
+
+//print(pet)
+
+
+
+
+
+
+class Mentor{
+    var specialization:String? = nil
+    init(specialization: String?) {
+        self.specialization = specialization
+    }
+}
+
+class Student{
+    var mentor:Mentor? = nil
+    var name:String
+    var age: Int
+    // is the user pass a mentor instance
+    init?(name:String, age:Int, mentor:Mentor?){
+        if !name.isEmpty && age >= 10 {
+            self.name = name
+            self.age = age
+            self.mentor = mentor
+        }else{
+            return nil
+        }
+    }
+    // if there is not mentor instance
+    init?(name:String, age:Int){
+        if !name.isEmpty && age >= 10 {
+            self.name = name
+            self.age = age
+        }else{
+            return nil
+        }
+    }
+    func getMentorSpecialization() -> String? {
+        mentor?.specialization
+    }
+}
+var mentor = Mentor(specialization: "IOS APP DEV")
+var student1 = Student(name: "Madhav", age: 21, mentor: mentor)
+var student2 = Student(name: "Guri", age: 21)
+
+// in order to use a property or method on a failable initized instance we need to access using ?.
+if let  mentorSpecialization1 = student1?.getMentorSpecialization() {
+    print(mentorSpecialization1)
+}else{
+    print("There is not Specialization!")
+}
+
+if let  mentorSpecialization2 = student2?.getMentorSpecialization() {
+    print(mentorSpecialization2)
+}else{
+    print("There is not Specialization!")
+}
+
+print(student2?.getMentorSpecialization() ?? "Specialization not found!")
+//
+//class Test{
+//    var name:String
+//    // there is no default initilizer you need to create one
+//}
+//var obj = Test(name:"madhav")
+//struct Test{
+//    var name:String
+//    // there is a default memberwise initilizer
+//}
+//var obj = Test(name: "madhav")
+//
+
+// if a property have a default  value, it is not required to pass the property in the args of initilizer
+
+
+
+var name:String? = "Robert"
+// variable shadowing
+//if let name = name {
+//    // name is unwrapped here
+//    print("My name is \(name)")
+//}
+// this is the best way to  unwrap the optional and get the same initializer
+if let name {
+    print("My name is \(name)")
+}
+// name is optional here
+print(name)
+//
+//guard let anotherName = name else{
+//    print("name is nil")
+//}
+//print(anotherName)
+
+// enumeration
+
+
+// one way
+//enum direction {
+//    case up
+//    case down
+//    case left
+//    case right
+//}
+
+// another way
+enum Direction {
+    case up,down,left,right
+}
+
+var direction: Direction = .right
+switch(direction){
+case .up:
+        print("Player is going up")
+case .down:
+        print("Player is going down")
+case .right:
+    print("Player is going right")
+case .left:
+    print("Player is going left")
+}
+
+
+
+
+
+
+enum LoginStatus {
+    case success, invalidUsername, invalidEmail
+}
+struct User{
+    var username:String?
+    var email:String?
+    func validateUserInput() -> LoginStatus{
+        guard let username , !username.isEmpty else {
+            return .invalidEmail
+        }
+        guard let email else {
+            return .invalidEmail
+        }
+        return .success
+
+    }
+
+}
+var testuser = User(username: "mady020", email: "test@gmail.com")
+ß
+switch(testuser.validateUserInput()){
+case .invalidEmail:
+    print("[ERROR] :  Either nil or Invalid Email Address!")
+case .invalidUsername:
+    print("[ERROR] :  Either nil or Invalid User Name!")
+case .success:
+    if let email = testuser.email, let username = testuser.username{
+        print("Username: \(testuser.username)")
+        print("Email: \(email)")
+    }
+}
