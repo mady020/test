@@ -41,8 +41,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Log In"/>
                                 <connections>
-                                    <action selector="loginButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="X1N-ia-y3h"/>
-                                    <segue destination="JgU-7a-9xK" kind="show" identifier="onClickSegue" id="Hxl-wV-4xA"/>
+                                    <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="azL-LX-5kV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BnR-7t-iDv">
@@ -53,7 +52,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Forgot Username?"/>
                                 <connections>
-                                    <action selector="forgotUsername:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kqA-Pu-YrY"/>
+                                    <segue destination="JgU-7a-9xK" kind="show" identifier="forgotUsername" id="Cgs-zi-D9Z"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ary-dR-KbY">
@@ -63,7 +62,17 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Forgot Password?"/>
+                                <connections>
+                                    <segue destination="JgU-7a-9xK" kind="show" identifier="forgotPassword" id="WXa-dw-fjh"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mL0-fT-xrW">
+                                <rect key="frame" x="96" y="559" width="202" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -85,11 +94,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="hag-TE-hqY"/>
                     <connections>
-                        <outlet property="forgotPassword" destination="ary-dR-KbY" id="Iv9-2v-4t9"/>
-                        <outlet property="forgotUsername" destination="BnR-7t-iDv" id="JUV-Hx-UfT"/>
-                        <outlet property="password" destination="BT6-a3-r21" id="aq6-9F-TIt"/>
+                        <outlet property="infoLabel" destination="mL0-fT-xrW" id="sB6-8Q-yoi"/>
+                        <outlet property="password" destination="BT6-a3-r21" id="xHm-dh-Q3z"/>
                         <outlet property="username" destination="uRq-Vh-INH" id="jTl-cU-uXt"/>
-                        <segue destination="JgU-7a-9xK" kind="show" identifier="changeViewSegue" id="TFV-po-EyF"/>
+                        <segue destination="JgU-7a-9xK" kind="show" identifier="changeView" id="TFV-po-EyF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -132,7 +140,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Hxl-wV-4xA"/>
+        <segue reference="TFV-po-EyF"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
